@@ -16,6 +16,21 @@ body {
     grid-template-columns:repeat(4, 100px);
     grid-template-rows: repeat(6, 100px);
 }
+/* #display {
+    height: 150px;
+} */
+#updisplay {
+    height: 20px;
+    font-size: 15px;
+    direction: rtl;
+    /* border-bottom: 1px solid; */
+}
+
+#downdisplay {
+    height: 60px;
+    font-size: 30px;
+    direction: rtl;
+}
 
 .calcu-char {
     padding: 25px 30px;

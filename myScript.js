@@ -14,42 +14,87 @@ var minus = document.getElementById("minus");
 var divide = document.getElementById("divide");
 var dlt = document.getElementById("delete");
 var display = document.getElementById("display");
+var updisplay = document.getElementById("updisplay");
+var downdisplay = document.getElementById("downdisplay");
 var ac = document.getElementById("ac");
 var equal = document.getElementById("equal");
 var dot = document.getElementById("dot");
 
-var calcu = "";
+var downcalcu = "";
+var upcalcu ="";
 var result = "";
+var charDel="";
+var myNum ="";
+
 function exhibit (n){
-    display.innerHTML += n;
-    calcu += n;
-    console.log(calcu);
+    if (n === "."){
+        if (downcalcu.includes(".")) {
+            console.log(downcalcu);
+            downcalcu=downcalcu;
+        }else {
+            downcalcu += n;
+            charDel += n;
+            downdisplay.innerHTML = downcalcu;
+        }
+
+    }else {
+        downcalcu += n;
+            charDel += n;
+            downdisplay.innerHTML = downcalcu;
+    }  
+    
 }
 
 function total () {
-    result = eval(calcu);
-    display.innerHTML = result;
-    calcu = result;
-    console.log(result);
+    
+        result =eval(upcalcu + downcalcu);
+        downdisplay.innerHTML =result;
+        downcalcu= result;
+        upcalcu = "";
+        updisplay.innerHTML="";
+        downcalcu = downcalcu.toString();
+    
+    
+    
+    // console.log(result);
 }
 
+function sendUp (n) {
+    downcalcu += n;
+    upcalcu += downcalcu;
+    updisplay.innerText=upcalcu;
+    downcalcu ="";
+    downdisplay.innerText="";
+}
+    
+    
+
 function clearDisplay () {
-    display.innerHTML = "";
-    calcu = "";
+    downdisplay.innerHTML = "";
+    // display.innerHTML="";
+    updisplay.innerHTML="";
+    upcalcu = "";
+    downcalcu="";
     result= "";
 }
 
 function lastCharDel (){
+    console.log(upcalcu, downcalcu)
+    downcalcu = downcalcu.toString();
+    upcalcu = upcalcu.toString();
+    charDel = upcalcu + downcalcu;
+    upcalcu ="";
+    downcalcu ="";
+    updisplay.innerHTML=upcalcu;
+    downdisplay.innerHTML = charDel.slice(0, -1);
+    downcalcu=charDel.slice(0, -1);
     
-    charDel = calcu.toString();
-    display.innerHTML =  parseInt(charDel.slice(0, -1));
-    calcu = parseInt(charDel.slice(0, -1));
-    if (calcu === NaN) {
-        calcu = "";
-        result = "";
-    }
-    // result = charDel;
+    // updisplay.innerHTML = upcalcu;
+      
+    
 }
+
+
 one.addEventListener("click", function (){exhibit ("1");});
 two.addEventListener("click", function (){exhibit ("2");});
 three.addEventListener("click", function (){exhibit ("3");});
@@ -61,10 +106,10 @@ eight.addEventListener("click", function (){exhibit ("8");});
 nein.addEventListener("click", function (){exhibit ("9");});
 zero.addEventListener("click", function (){exhibit ("0");});
 dot.addEventListener("click", function (){exhibit (".");});
-plus.addEventListener("click", function (){exhibit ("+");});
-minus.addEventListener("click", function (){exhibit ("-");});
-divide.addEventListener("click", function (){exhibit ("/");});
-multi.addEventListener("click", function (){exhibit ("*");});
+plus.addEventListener("click", function (){sendUp ("+");});
+minus.addEventListener("click", function (){sendUp ("-");});
+divide.addEventListener("click", function (){sendUp ("/");});
+multi.addEventListener("click", function (){sendUp ("*");});
 equal.addEventListener("click", function (){ total ();});
 ac.addEventListener("click", function (){ clearDisplay ();});
 dlt.addEventListener("click", function (){ lastCharDel ();});
@@ -75,25 +120,7 @@ dlt.addEventListener("click", function (){ lastCharDel ();});
 
 
 
-/* <div class="calcu-char screen" id="display"></div>
-        <div class="calcu-char a-clear" id="ac">AC</div>
-        <div class="calcu-char delete" id="delete">DEL</div>
-        <div class="calcu-char fas fa-divide" id="divide"></div>
-        <div class="calcu-char one" id="one">1</div>
-        <div class="calcu-char two" id="two">2</div>
-        <div class="calcu-char three" id="three">3</div>
-        <div class="calcu-char multply" id="multiply">*</div>
-        <div class="calcu-char four" id="four">4</div>
-        <div class="calcu-char five" id="five">5</div>
-        <div class="calcu-char six" id="six">6</div>
-        <div class="calcu-char plus" id="plus">+</div>
-        <div class="calcu-char seven" id="seven">7</div>
-        <div class="calcu-char eight" id="eight">8</div>
-        <div class="calcu-char nein" id="nein">9</div>
-        <div class="calcu-char minus" id="minus">-</div>
-        <div class="calcu-char dot" id="dot">.</div>
-        <div class="calcu-char zero" id="zero">0</div>
-        <div class="calcu-char equal" id="equal">=</div> */
+
 
 
 
