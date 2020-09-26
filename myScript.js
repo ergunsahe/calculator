@@ -30,7 +30,7 @@ function exhibit (n){
     if (n === "."){
         if (downSum.includes(".")) {
             downSum=downSum;
-        }else if(n === "." && ddownSum===""){
+        }else if(n === "." && downSum===""){
             downSum = downSum;
 
         }else {
