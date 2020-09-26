@@ -20,42 +20,41 @@ var ac = document.getElementById("ac");
 var equal = document.getElementById("equal");
 var dot = document.getElementById("dot");
 
-var downcalcu = "";
-var upcalcu ="";
+var downSum = "";
+var upSum ="";
 var result = "";
 var charDel="";
 var myNum ="";
 
 function exhibit (n){
     if (n === "."){
-        if (downcalcu.includes(".")) {
-            // console.log(downcalcu);
-            downcalcu=downcalcu;
-        }else if(n === "." && downcalcu===""){
-            downcalcu = downcalcu;
+        if (downSum.includes(".")) {
+            downSum=downSum;
+        }else if(n === "." && ddownSum===""){
+            downSum = downSum;
 
         }else {
-            downcalcu += n;
+            downSum += n;
             charDel += n;
-            downdisplay.innerHTML = downcalcu;
+            downdisplay.innerHTML = downSum;
         }
 
     }else {
-        downcalcu += n;
+        downSum += n;
             charDel += n;
-            downdisplay.innerHTML = downcalcu;
+            downdisplay.innerHTML = downSum;
     }  
     
 }
 
 function total () {
     
-        result =eval(upcalcu + downcalcu);
+        result =eval(upSum + downSum);
         downdisplay.innerHTML =result;
-        downcalcu= result;
-        upcalcu = "";
+        downSum= result;
+        upSum = "";
         updisplay.innerHTML="";
-        downcalcu = downcalcu.toString();
+        downSum = downSum.toString();
     
     
     
@@ -63,52 +62,52 @@ function total () {
 }
 
 function sendUp (n) {
-    if (upcalcu ==="") {
-        downcalcu += n;
-        upcalcu += downcalcu;
-        updisplay.innerText=upcalcu;
-        downcalcu ="";
+    
+    if (upSum ==="") {
+        downSum += n;
+        upSum += downSum;
+        updisplay.innerText=upSum;
+        downSum ="";
         downdisplay.innerText="";
     } else {
-        downcalcu += n;
-        upcalcu += downcalcu;
-        lastN=upcalcu.charAt(upcalcu.length -1);
-        console.log(upcalcu.charAt(upcalcu.length -1))
-        downcalcu ="";
-        downdisplay.innerHTML = "";
-        upcalcu= eval(upcalcu.slice(0, -1))
-        upcalcu= upcalcu.toString() + lastN;
-        updisplay.innerHTML = upcalcu;
         
-
-
+        downSum +=n;
+        upSum += downSum;
+        lastN=upSum.charAt(upSum.length -1);
+        console.log(upSum.charAt(upSum.length -1))
+        downSum ="";
+        downdisplay.innerHTML = "";
+        upSum= eval(upSum.slice(0, -1))
+        upSum= upSum.toString() + lastN;
+        updisplay.innerHTML = upSum;
     }
-    
 }
+ 
+    
+    
+
     
     
 
 function clearDisplay () {
     downdisplay.innerHTML = "";
-    // display.innerHTML="";
     updisplay.innerHTML="";
-    upcalcu = "";
-    downcalcu="";
+    upSum = "";
+    downSum="";
     result= "";
 }
 
 function lastCharDel (){
-    console.log(upcalcu, downcalcu)
-    downcalcu = downcalcu.toString();
-    upcalcu = upcalcu.toString();
-    charDel = upcalcu + downcalcu;
-    upcalcu ="";
-    downcalcu ="";
-    updisplay.innerHTML=upcalcu;
+    downSum = downSum.toString();
+    upSum = upSum.toString();
+    charDel = upSum + downSum;
+    upSum ="";
+    downSum ="";
+    updisplay.innerHTML=upSum;
     downdisplay.innerHTML = charDel.slice(0, -1);
-    downcalcu=charDel.slice(0, -1);
+    downSum=charDel.slice(0, -1);
     
-    // updisplay.innerHTML = upcalcu;
+    
       
     
 }
