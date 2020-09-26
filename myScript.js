@@ -29,8 +29,11 @@ var myNum ="";
 function exhibit (n){
     if (n === "."){
         if (downcalcu.includes(".")) {
-            console.log(downcalcu);
+            // console.log(downcalcu);
             downcalcu=downcalcu;
+        }else if(n === "." && downcalcu===""){
+            downcalcu = downcalcu;
+
         }else {
             downcalcu += n;
             charDel += n;
@@ -60,11 +63,27 @@ function total () {
 }
 
 function sendUp (n) {
-    downcalcu += n;
-    upcalcu += downcalcu;
-    updisplay.innerText=upcalcu;
-    downcalcu ="";
-    downdisplay.innerText="";
+    if (upcalcu ==="") {
+        downcalcu += n;
+        upcalcu += downcalcu;
+        updisplay.innerText=upcalcu;
+        downcalcu ="";
+        downdisplay.innerText="";
+    } else {
+        downcalcu += n;
+        upcalcu += downcalcu;
+        lastN=upcalcu.charAt(upcalcu.length -1);
+        console.log(upcalcu.charAt(upcalcu.length -1))
+        downcalcu ="";
+        downdisplay.innerHTML = "";
+        upcalcu= eval(upcalcu.slice(0, -1))
+        upcalcu= upcalcu.toString() + lastN;
+        updisplay.innerHTML = upcalcu;
+        
+
+
+    }
+    
 }
     
     
